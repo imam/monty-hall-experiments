@@ -3,7 +3,7 @@
 
 Monty hall is a popular math problem that has been around for several years. This Ruby program will let you to run several Monty Hall experiments at one click. Just like the real game, the computer won't know anyhing about the winning door and I try to make the program as fair as possible so you won't feel cheated.
 
-Feel free to play on (_link isn't available yet_) or download it and try to run the program yourself.
+Feel free to play on https://imamassi-monty-hall.herokuapp.com/ or download it and try to run the program yourself.
 
 ## Packages that I used
 ----------------------
