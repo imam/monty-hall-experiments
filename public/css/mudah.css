@@ -1,3 +1,5 @@
+/** Text */
+
 .text-center{
 	text-align: center;
 }
@@ -14,10 +16,31 @@
 	font-weight: bold;
 }
 
+/** Block Alignments*/
+
 .block-center{
 	margin: 0 auto;
 }
 
+/** Make something hidden*/
+
 .hidden{
 	display: none;
+}
+
+/** Margin */
+
+.margin-top{
+	margin-top: 30px;
+}
+
+
+/** Padding */
+
+.padding-vertical{
+	padding: 30px 0;
+}
+
+.padding-bottom{
+	padding: 0 0 30px 0;
 }
