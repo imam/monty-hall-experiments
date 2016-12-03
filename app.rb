@@ -88,7 +88,7 @@ class GameRepetition
 
 	attr_accessor :games,:winningTotal, :winningPercentage
 
-	def initialize(totalGames, willChangeDoor)
+	def initialize
 		@watcher = GameWatcher.new
 		@games = @watcher.games
 		@winningTotal = @watcher.winningTotal
@@ -117,7 +117,7 @@ get '/' do
 end
 
 get '/game' do
-	games = GameRepetition.new(params['change_door_repetition'].to_i, true)
+	games = GameRepetition.new
 	games.startGame(params['change_door_repetition'].to_i,true)
 	games.startGame(params['dont_change_door_repetition'].to_i, false)
 	json games
