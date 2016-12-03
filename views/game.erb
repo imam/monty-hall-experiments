@@ -1,0 +1,28 @@
+<table class="u-full-width">
+		<thead>
+			<tr>
+				<th>Winning Door</th>
+				<th>First Door</th>
+				<th>Change Door?</th>
+				<th>Is Winning?</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% gamesChangeDoor.games.each do |k| %>
+				<tr>
+					<th><%= k.winningDoor %></th>
+					<th><%= k.firstDoor %></th>
+					<th><%= k.willChangeDoor %></th>
+					<th><%= k.isWinning ? 'True': 'False'%></th>
+				</tr>
+			<% end %>
+			<% gamesDontChangeDoor.games.each do |k| %>
+				<tr>
+					<th><%= k.winningDoor %></th>
+					<th><%= k.firstDoor %></th>
+					<th><%= k.willChangeDoor %></th>
+					<th><%= k.isWinning ? 'True': 'False'%></th>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>

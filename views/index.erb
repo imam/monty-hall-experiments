@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Monty Hall Experiment
+	</title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/mudah.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.1/fetch.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h1 class="text-center">Monty Hall</h1>
+	<p class="text-center text-bold">Monty Hall is a popular math problem that has been around for years. This site will </p>
+	<form>
+		<div class="row">
+			<div class="six columns">
+				<label for="changedoor">Change Door</label>
+				<input type="text" class="u-full-width" id="change_door_repetition">
+			</div>
+			<div class="six columns">
+				<label for="changedoor">Don't Change Door</label>
+				<input type="text" class="u-full-width" id="dont_change_door_repetition">
+			</div>
+		</div>
+		<button type="submit" id="start" class="block-center button-primary">Start New Game</button>
+		<button type="submit" id="reset" class="block-center">Reset</button>
+	</form>
+
+	<div id="gameTable">
+		<div v-if="tableShow">
+			<ul>
+				<li>Winning Total: {{winningTotal}}</li>
+				<li>Winning Percentage: {{winningPercentage}}%</li>
+			</ul>
+		</div>
+
+		<table v-if="tableShow" class="hidden u-full-width" id="gameTableGames">
+			<thead>
+				<tr>
+					<th>Winning Door</th>
+					<th>First Door</th>
+					<th>Change Door?</th>
+					<th>Is Winning?</th>
+				</tr>
+			</thead>
+			<tbody >
+				<tr v-for="game in games">
+					<th>{{ game.winningDoor }}</th>
+					<th>{{ game.firstDoor }}</th>
+					<th>{{ game.willChangeDoor }}</th>
+					<th>{{ game.isWinning }}</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+
+	document.getElementById('gameTableGames').classList.remove('hidden');
+
+
+	document.getElementById('start').addEventListener('click', function(e){
+		e.preventDefault();
+		change_door_repetition = document.getElementById('change_door_repetition').value;
+		dont_change_door_repetition = document.getElementById('dont_change_door_repetition').value;
+		request = fetch('/game?change_door_repetition='+change_door_repetition+'&dont_change_door_repetition='+dont_change_door_repetition,{
+			method: 'GET',
+		}).then(function(response){
+			return response.text();
+		});
+		request.then(function(e){
+			e = JSON.parse(e);
+			data.games = e.games;
+			data.winningTotal = e.winningTotal;
+			data.winningPercentage = Math.round(Number(e.winningPercentage)*100)/100;
+			console.log(e.games);
+		});
+	})
+
+	document.getElementById('reset').addEventListener('click', function(e){
+		data.games = [];
+		e.preventDefault();
+	})
+
+	var data = new Vue({
+		el: "#gameTable",
+		data: {
+			games: [
+			],
+			tableShow: false,
+			winningTotal: 0,
+			winningPercentage: 0
+		},
+		computed: {
+			tableShow: function(){
+				if(this.games.length > 0){
+					return tableShow = true;
+				} else {
+					return tableShow = false;
+				}
+			}
+		}
+	})
+
+
+	</script>
+</div>
+</body>
+</html>
