@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'sinatra/json'
-
+#test
 class SingleGame
 
 	attr_accessor :winningDoor, :firstDoor,:currentDoor,:willChangeDoor,:losingDoor,:isWinning
