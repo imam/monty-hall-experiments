@@ -3,7 +3,7 @@ GEM
   specs:
     backports (3.6.8)
     multi_json (1.12.1)
-    rack (1.6.5)
+    rack (1.6.13)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -22,6 +22,7 @@ GEM
     tilt (2.0.5)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
